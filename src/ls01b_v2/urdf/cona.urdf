@@ -1,29 +1,29 @@
 <robot name="cona">
     
     <link name="base_link"/>
-    <link name="lidar1"/>
-    <link name="lidar2"/>
-    <link name="camera"/>
+    <link name="laser1"/>
+    <link name="laser2"/>
+    <link name="camera_link"/>
 
     <joint name="robot2laser1" type="fixed">
-        <origin xyz="0.2 0.2 0" rpy="0 0 0.785" />
+        <origin xyz="0.15 0.105 0" rpy="0 0 0.785" />
         <parent link="base_link"/>
-        <child link="lidar1"/>
+        <child link="laser1"/>
         
     </joint>
 
     <joint name="robot2laser2" type="fixed">
-        <origin xyz="-0.2 -0.2 0" rpy="0 0 3.925" />
+        <origin xyz="-0.15 -0.105 0" rpy="0 0 3.925" />
         <parent link="base_link"/>
-        <child link="lidar2"/>
+        <child link="laser2"/>
         
     </joint>
 
     <joint name="robot2camera" type="fixed">
-        <origin xyz="0.2 0 0" rpy="0 0 4.71" />
+        <origin xyz="0.15 0 0" rpy="0 0 4.71" />
         <parent link="base_link"/>
-        <child link="camera"/>
+        <child link="camera_link"/>
         
     </joint>
 
-</robot>        
+</robot>

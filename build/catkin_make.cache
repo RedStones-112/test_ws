@@ -1,2 +1,2 @@
-ls01b_v2
+ls01b_v2:ros_astra_camera
 -DCATKIN_DEVEL_PREFIX=/home/cona/test_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cona/test_ws/install -G Unix Makefiles

@@ -1,4 +1,6 @@
 <launch>
+    <param name='robot_description' textfile='$(find ls01b_v2)/urdf/cona.urdf'/>#
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
     
     
     <node name="ls01b_v2_1" pkg="ls01b_v2" type="ls01b_v2">
@@ -51,10 +53,12 @@
         <param name="min_range" value="0.2"/>
         <param name="max_range" value="25.0"/>
     </node>
-    <param name='robot_description' textfile='$(find ls01b_v2)/urdf/cona.urdf'/>#
+
+
+    <include file="/home/cona/test_ws/src/ros_astra_camera/launch/stereo_s_u3.launch"/>
+
     <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
     
 

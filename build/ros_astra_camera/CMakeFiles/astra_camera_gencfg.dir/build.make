@@ -61,7 +61,7 @@ ros_astra_camera/CMakeFiles/astra_camera_gencfg: /home/cona/test_ws/devel/lib/py
 /home/cona/test_ws/devel/include/astra_camera/AstraConfig.h: /opt/ros/noetic/share/dynamic_reconfigure/templates/ConfigType.py.template
 /home/cona/test_ws/devel/include/astra_camera/AstraConfig.h: /opt/ros/noetic/share/dynamic_reconfigure/templates/ConfigType.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/cona/test_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating dynamic reconfigure files from cfg/Astra.cfg: /home/cona/test_ws/devel/include/astra_camera/AstraConfig.h /home/cona/test_ws/devel/lib/python3/dist-packages/astra_camera/cfg/AstraConfig.py"
-	cd /home/cona/test_ws/build/ros_astra_camera && ../catkin_generated/env_cached.sh /usr/bin/python3 /home/cona/test_ws/src/ros_astra_camera/cfg/Astra.cfg /opt/ros/noetic/share/dynamic_reconfigure/cmake/.. /home/cona/test_ws/devel/share/astra_camera /home/cona/test_ws/devel/include/astra_camera /home/cona/test_ws/devel/lib/python3/dist-packages/astra_camera
+	cd /home/cona/test_ws/build/ros_astra_camera && ../catkin_generated/env_cached.sh /home/cona/test_ws/build/ros_astra_camera/setup_custom_pythonpath.sh /home/cona/test_ws/src/ros_astra_camera/cfg/Astra.cfg /opt/ros/noetic/share/dynamic_reconfigure/cmake/.. /home/cona/test_ws/devel/share/astra_camera /home/cona/test_ws/devel/include/astra_camera /home/cona/test_ws/devel/lib/python3/dist-packages/astra_camera
 
 /home/cona/test_ws/devel/share/astra_camera/docs/AstraConfig.dox: /home/cona/test_ws/devel/include/astra_camera/AstraConfig.h
 	@$(CMAKE_COMMAND) -E touch_nocreate /home/cona/test_ws/devel/share/astra_camera/docs/AstraConfig.dox

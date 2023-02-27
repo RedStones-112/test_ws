@@ -4,7 +4,6 @@
 #include "geometry_msgs/TransformStamped.h"///////
 #include "tf/transform_listener.h"
 
-
 class merge_point{
     private:
     ros::NodeHandle nh;
@@ -13,6 +12,8 @@ class merge_point{
     tf::StampedTransform stf;
     tf::TransformListener tfl;
     tf::Quaternion tfq;//
+    
+    void merge_lidar();
 
     public:
     void Callback_scan1(sensor_msgs::LaserScan scan1);
@@ -24,35 +25,45 @@ void merge_point::Callback_scan1(sensor_msgs::LaserScan scan1){
     int n;
     float angle;
     float range_array[1600];
+    float x,y,tf_x,tf_y;
     std::vector<float>  point_xyz;
 
     std::copy(std::begin(scan1.ranges), std::end(scan1.ranges), std::begin(range_array));
-    n = 1600;//초당 16000개의 데이터 / 10(hz)
+    
     angle = scan1.angle_min;
-    //try{
-    //    tfl.lookupTransform("lidar1","base_link",ros::Time(0), stf);
-    //}
-    //catch (tf::TransformException ex){
-    //    ROS_ERROR(".");
-    //}
-    
-    for (int i = 0; i < n; i++){
-        point_xyz.push_back(range_array[i]*cos(tan(angle)));//x ///계산식 보안 필요
-        point_xyz.push_back(range_array[i]*sin(tan(angle)));//y
-        point_xyz.push_back(0); //z
-        angle += scan1.angle_increment;//
+    try{
+        tfl.lookupTransform("base_link","laser1",ros::Time(0), stf);//두 프레임의 관계를 가져온다.
     }
-    //tfl.transformVector
+    catch (tf::TransformException ex){// 파악필요
+        ROS_ERROR(".");
+    }
+    tf::Quaternion q = stf.getRotation();//회전값
+    tf::Vector3 a = stf.getOrigin();//이동값
+    std::vector<float> merge_range;
+    n = 1600;//초당 16000개의 데이터 / 10(hz)
+    for (int i = 0; i < n; i++){/////////////////////////올바른 방향 아님
+        x = (range_array[i]*cos(angle));//좌표로 변경
+        y = (range_array[i]*sin(angle));
+        tf_x = (x*cos(q[2])-y*sin(q[2]))+a[0];//tf 회전,이동
+        tf_y = (x*sin(q[2])+y*cos(q[2]))+a[1];
+        merge_range.push_back(sqrt(pow(tf_x,2) + pow(tf_y,2)));//tf한 좌표의 원점과의 거리
+        angle += scan1.angle_increment;//각도값에 간격값 추가
+    }
     
-    //tf.header.frame_id = "lidar1";
-    //ls.header.stamp = ros::Time::now();
-    //scan3.publish(ls);
-    //ROS_INFO("point : %f , %f",point_xyz[0][110],point_xyz[1][110]);
+    
+    
+    
+    
+    scan3.publish(ls);
+    
     
     
 }
 void merge_point::Callback_scan2(sensor_msgs::LaserScan scan2){
     //ROS_INFO("2%f",scan2.scan_time);
+}
+void merge_point::merge_lidar(){
+
 }
 
 

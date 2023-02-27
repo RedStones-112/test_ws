@@ -15,7 +15,7 @@ find_package(Boost REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
 
-  CATKIN_DEPENDS roscpp sensor_msgs std_msgs geometry_msgs tf
+  CATKIN_DEPENDS roscpp sensor_msgs std_msgs geometry_msgs tfzz
 )
 
 include_directories(include)
